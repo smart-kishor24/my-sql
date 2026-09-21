@@ -108,3 +108,14 @@ VALUES
 (3, 'Priya', 'priya@gmail.com', 20, 'Hyderabad', 103),
 (4, 'Anil', 'anil@gmail.com', 23, 'Guntur', 104),
 (5, 'Sneha', 'sneha@gmail.com', 21, 'Chennai', 105);
+
+USE college_db;
+alter table students
+add address varchar(200);
+alter table students
+modify age decimal(12, 2);
+select * from students;
+desc students;
+alter table students
+rename column phone_num to phone_number;
+desc students;
