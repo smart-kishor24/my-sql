@@ -342,6 +342,92 @@ END //
 
 DELIMITER ;
 
+USE company_db1;
+
+DELIMITER //
+
+CREATE PROCEDURE get_all_employees()
+BEGIN
+    SELECT * 
+    FROM employees;
+END //
+
+DELIMITER ;
+
+USE company_db1;
+
+DROP PROCEDURE IF EXISTS get_employee_by_department;
+
+DELIMITER //
+
+CREATE PROCEDURE get_employee_by_department(
+    IN dept_name VARCHAR(50)
+)
+BEGIN
+    SELECT
+        employee_id,
+        employee_name,
+        salary,
+        department
+    FROM employees
+    WHERE department = dept_name;
+END //
+
+DELIMITER ;
+
+CALL get_employee_by_department('IT');
+
+USE company_db1;
+DELIMITER //
+CREATE PROCEDURE update_employee_salary(
+    IN emp_id INT,
+    IN new_salary DECIMAL(10,2)
+)
+BEGIN
+    UPDATE employees 
+       SET salary = new_salary
+       WHERE employee_id = emp_id;
+END//
+DELIMITER :
+CALL update_employee_salary(2, 700000);
+
+USE company_db1;
+
+DELIMITER //
+
+CREATE PROCEDURE add_employee(
+    IN emp_name VARCHAR(100),
+    IN emp_email VARCHAR(100), 
+    IN emp_salary DECIMAL(10,2),
+    IN dept_id INT,
+    IN join_date DATE
+)
+BEGIN
+    INSERT INTO employees (
+        employee_name, 
+        email, 
+        salary, 
+        department_id,
+        joining_date
+    )
+    VALUES (
+        emp_name,
+        emp_email, 
+        emp_salary,
+        dept_id,
+        join_date
+    );
+END //
+DELIMITER ;
+CALL add_employee(
+    'Vijay',
+    'vijay@gmail.com',
+     65000,
+     1,
+    '2026-01-15'
+);
+
+
 
 
 
