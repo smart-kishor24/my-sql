@@ -170,4 +170,70 @@ JOIN departments d
 WHERE d.department_name = 'IT';
 
 
+CREATE VIEW high_salary_employees1 AS
+SELECT
+    e.employee_id,
+    e.employee_name,
+    e.salary,
+    d.department_name
+FROM employees e
+JOIN departments d
+    ON e.department_id = d.department_id
+WHERE e.salary > 60000;
+
+SELECT *
+FROM high_salary_employees;
+
+CREATE DATABASE company_db;
+USE company_db;
+CREATE TABLE departments (
+departments_id INT PRIMARY KEY AUTO_INCREMENT,
+departments_name VARCHAR(100) NOT NULL,
+location VARCHAR(100)
+);
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY AUTO_INCREMENT,
+    employee_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    salary DECIMAL(10,2),
+    department_id INT,
+    manager_id INT,
+    joining_date DATE,
+    FOREIGN KEY (department_id)
+    REFERENCES departments(department_id),
+    FOREIGN KEY(manager_id)
+    REFERENCES employees(employee_id)
+    );
+    CREATE TABLE projects (
+       project_id INT PRIMARY KEY AUTO_INCREMENT,
+       project_name VARCHAR(100) NOT NULL,
+       budget DECIMAL(12,2),
+       start_date date
+
+SELECT
+    e.employee_name AS employee,
+    e.salary,
+    d.department_name AS department
+FROM employees e
+INNER JOIN departments d
+    ON e.department_id = d.department_id;
+
+SELECT
+    e.employee_name
+FROM employees e
+INNER JOIN departments d
+    ON e.department_id = d.department_id
+WHERE d.department_name = 'IT';
+
+SELECT
+    e.employee_name,
+    d.department_name
+FROM employees e
+JOIN departments d
+    ON e.department_id = d.department_id
+WHERE d.department_name = 'IT';
+
+
+
+
 
