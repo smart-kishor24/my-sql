@@ -233,6 +233,51 @@ JOIN departments d
     ON e.department_id = d.department_id
 WHERE d.department_name = 'IT';
 
+SELECT
+    e.employee_name,
+    p.project_name,
+    ep.assigned_date
+FROM employees e
+JOIN employee_projects ep
+    ON e.employee_id = ep.employee_id
+JOIN projects p
+    ON ep.project_id = p.project_id;
+
+SELECT
+    e.employee_name
+FROM employees e
+JOIN employee_projects ep
+    ON e.employee_id = ep.employee_id
+JOIN projects p
+    ON ep.project_id = p.project_id
+WHERE p.project_name = 'E-Commerce Application';
+
+SELECT
+    e.employee_name,
+    ep.assigned_date
+FROM employees e
+JOIN employee_projects ep
+    ON e.employee_id = ep.employee_id
+JOIN projects p
+    ON ep.project_id = p.project_id
+WHERE p.project_name = 'Banking Application';
+
+CREATE VIEW high_salary_employees AS
+SELECT
+	employee_id,
+    employee_name,
+    salary
+FROM employees
+WHERE salary > 60000;
+
+SELECT 
+	employee_name,
+	length(employee_name) AS name_length
+FROM employees;
+
+SELECT COUNT(*) AS total_employees
+FROM employees;
+
 
 
 
