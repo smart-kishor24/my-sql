@@ -119,3 +119,55 @@ desc students;
 alter table students
 rename column phone_num to phone_number;
 desc students;
+
+
+SELECT
+	e.employee_name AS employee,
+    m.employee_name AS manager
+FROM employees e
+LEFT JOIN employees m
+ON e.manager_id = m.employee_id;
+
+SELECT
+	e.employee_name,
+    p.project_name 
+FROM employees e
+cross join projects p;
+
+SELECT
+	e.employee_name,
+    d.department_name,
+    p.project_name 
+FROM employees e
+inner join departments d
+	ON e.department_id = d.department_id
+inner join employee_projects ep
+	ON e.employee_id = ep.employee_id
+inner join projects p
+	ON ep.project_id = p.project_id;
+
+SELECT
+	e.employee_name,
+    p.project_name,
+    p.budget
+FROM employees e
+join employee_projects ep
+	ON e.employee_id = ep.employee_id
+join projects p
+	ON ep.project_id = p.project_id
+WHERE p.budget  > 40000;
+
+CREATE VIEW it_employees2 AS
+SELECT
+    e.employee_id,
+    e.employee_name,
+    e.salary,
+    e.email,
+    d.department_name
+FROM employees e
+JOIN departments d
+    ON e.department_id = d.department_id
+WHERE d.department_name = 'IT';
+
+
+
